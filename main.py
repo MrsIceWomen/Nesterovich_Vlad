@@ -164,57 +164,61 @@ def main_code():
         print('Данные загружены не будут!')
     print('Добро пожаловать!')
     while True:
-        print('1.Создать аккаунт')
-        print('2.Положить деньги на счет')
-        print('3.Снять деньги')
-        print('4.Вывести баланс на экран')
-        print('5.Выставление лимита на счет')
-        print('6.Транзакции')
-        print('7.Выйти из программы')
-        command = int(input('Введите номер команды: '))
-        if command == 1:
-            create_account()
-        elif command == 2:
-            cash_in = int(input('Введите сумму пополнения: '))
-            cash_in_money(account, cash_in)
-        elif command == 3:
-            password_test = str(input('Для снятия денег введите пароль: '))
-            cash_out_money(account, password_test)
-        elif command == 4:
-            balance_vision()
-        elif command == 5:
-            limit_add_new()
-        elif command == 6:
-            while True:
-                print('Транзакции:')
-                print('1.Выставление ожидаемого пополнения')
-                print('2.Удалить транзакцию')
-                print('3.Применить транзакции')
-                print('4.Статистика по ожидаемым пополнениям')
-                print('5.Фильтрация отложенных пополнений')
-                print('6.Выход')
-                op = int(input('Введите номер команды: '))
-                if op == 1:
-                    new_transaction(account)
-                elif op == 2:
-                    del_transaction(account)
-                elif op == 3:
-                    transactions_apply(account)
-                elif op == 4:
-                    transactions_stat(account)
-                elif op == 5:
-                    threshold = int(input('Введите сумму порога: '))
-                    filtration_transactions(account, threshold)
-                elif op == 6:
-                    print('Выход из операций ТРАЗАКЦИИ!')
-                    break
-                else:
-                    print('Нет такой операции')
-        elif command == 7:
-            print('Всего доброго, до встречи!!!')
-            break
-        else:
-            print('Нет такой операции')
+        try:
+            print('1.Создать аккаунт')
+            print('2.Положить деньги на счет')
+            print('3.Снять деньги')
+            print('4.Вывести баланс на экран')
+            print('5.Выставление лимита на счет')
+            print('6.Транзакции')
+            print('7.Выйти из программы')
+            command = int(input('Введите номер команды: '))
+            if command == 1:
+                create_account()
+            elif command == 2:
+                cash_in = int(input('Введите сумму пополнения: '))
+                cash_in_money(account, cash_in)
+            elif command == 3:
+                password_test = str(input('Для снятия денег введите пароль: '))
+                cash_out_money(account, password_test)
+            elif command == 4:
+                balance_vision()
+            elif command == 5:
+                limit_add_new()
+            elif command == 6:
+                while True:
+                    print('Транзакции:')
+                    print('1.Выставление ожидаемого пополнения')
+                    print('2.Удалить транзакцию')
+                    print('3.Применить транзакции')
+                    print('4.Статистика по ожидаемым пополнениям')
+                    print('5.Фильтрация отложенных пополнений')
+                    print('6.Выход')
+                    op = int(input('Введите номер команды: '))
+                    if op == 1:
+                        new_transaction(account)
+                    elif op == 2:
+                        del_transaction(account)
+                    elif op == 3:
+                        transactions_apply(account)
+                    elif op == 4:
+                        transactions_stat(account)
+                    elif op == 5:
+                        threshold = int(input('Введите сумму порога: '))
+                        filtration_transactions(account, threshold)
+                    elif op == 6:
+                        print('Выход из операций ТРАЗАКЦИИ!')
+                        break
+                    else:
+                        print('Нет такой операции')
+            elif command == 7:
+                print('Всего доброго, до встречи!!!')
+                break
+            else:
+                print('Нет такой операции')
+        except ValueError:
+            print('Данные введены не корректно!!!\nВведите числа вместо текста!')
+            continue
         #основной код программы
 if __name__ == '__main__':
     account = {'fio': '', 'year': -1, 'password': '', 'money': 0, 'limit': -1, 'transactions': []}
